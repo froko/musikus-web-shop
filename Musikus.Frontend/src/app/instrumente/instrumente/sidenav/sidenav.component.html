@@ -1,0 +1,16 @@
+<div class="filter">
+  <mat-form-field>
+    <mat-select placeholder="Instrument-Typ" (selectionChange)="instrumentTypChanged($event.value)">
+      <mat-option [value]="">Alle Instrument-Typen</mat-option>
+      <mat-option *ngFor="let typ of typen" [value]="typ">{{ typ }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="filter">
+  <mat-form-field>
+    <mat-select placeholder="Hersteller" (selectionChange)="herstellerChanged($event.value)">
+      <mat-option [value]="">Alle Hersteller</mat-option>
+      <mat-option *ngFor="let hersteller of hersteller" [value]="hersteller">{{ hersteller }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

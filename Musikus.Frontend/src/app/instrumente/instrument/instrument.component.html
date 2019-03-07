@@ -1,0 +1,23 @@
+<div class="content flexWrap" *ngIf="(instrument$ | async) as instrument">
+  <div>
+    <mat-card class="description" *ngIf="(beschreibung$ | async) as beschreibung">
+      <img src="{{ instrument.image }}" alt="{{ instrument.name }}" />
+      <mat-card-content [innerHTML]="beschreibung"></mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="details">
+      <mat-card-content>
+        <h2>{{ instrument.name }}</h2>
+        <p>
+          von <b>Musikus Instrumente</b>, Hersteller: <b>{{ instrument.hersteller }}</b
+          >, Artikel-Nr.: <b>{{ instrument.artikelNr }}</b>
+        </p>
+        <span class="preis">{{ instrument.preis | currency: 'CHF ' }}</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button><mat-icon>add_shopping_cart</mat-icon>In den Warenkorb</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

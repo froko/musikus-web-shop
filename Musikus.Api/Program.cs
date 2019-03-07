@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-
-namespace Musikus.Api
+﻿namespace Musikus.Api
 {
-    public class Program
+    using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Hosting;
+
+    public static class Program
     {
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://localhost:3000/")
+                .UseUrls(Startup.BaseUrl)
                 .UseStartup<Startup>();
     }
 }

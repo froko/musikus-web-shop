@@ -1,0 +1,12 @@
+<div class="flexWrap">
+  <mat-card *ngFor="let instrument of instrumente" routerLink="/instrumente/{{ instrument.artikelNr }}">
+    <mat-card-header>
+      <mat-card-title>{{ instrument.name }}</mat-card-title>
+      <mat-card-subtitle>{{ instrument.typ }}</mat-card-subtitle>
+    </mat-card-header>
+    <img class="thumbnail" src="{{ instrument.thumbnail }}" alt="{{ instrument.name }}" />
+    <mat-card-content>
+      <span class="preis">{{ instrument.preis | currency: 'CHF ' }}</span>
+    </mat-card-content>
+  </mat-card>
+</div>

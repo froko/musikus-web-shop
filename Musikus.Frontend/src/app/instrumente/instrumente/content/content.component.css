@@ -1,0 +1,20 @@
+.flexWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  margin: 10px;
+}
+
+.preis {
+  font-weight: bold;
+  font-size: 18px;
+  color: #e2007a;
+}
+
+mat-card {
+  width: 260px;
+  margin: 10px;
+  cursor: pointer;
+}

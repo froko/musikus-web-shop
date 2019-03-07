@@ -1,0 +1,13 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened>
+    <app-sidenav
+      [typen]="typen$ | async"
+      [hersteller]="hersteller$ | async"
+      (typSelected)="selectionChanged($event)"
+      (herstellerSelected)="selectionChanged($event)"
+    ></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-content [instrumente]="instrumente$ | async"></app-content>
+  </mat-drawer-content>
+</mat-drawer-container>
