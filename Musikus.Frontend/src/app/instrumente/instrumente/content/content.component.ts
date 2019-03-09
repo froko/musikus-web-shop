@@ -11,4 +11,8 @@ export class ContentComponent {
   @Input() instrumente: InstrumentListItem[];
 
   constructor() {}
+
+  hasInstruments() {
+    return this.instrumente && this.instrumente.length > 0;
+  }
 }

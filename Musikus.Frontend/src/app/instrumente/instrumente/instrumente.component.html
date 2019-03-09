@@ -1,10 +1,9 @@
-<mat-drawer-container>
+<mat-drawer-container *ngIf="(filter$ | async) as filter">
   <mat-drawer mode="side" opened>
     <app-sidenav
-      [typen]="typen$ | async"
-      [hersteller]="hersteller$ | async"
-      (typSelected)="selectionChanged($event)"
-      (herstellerSelected)="selectionChanged($event)"
+      [filter]="filter"
+      (typSelected)="typeSelected($event)"
+      (herstellerSelected)="herstellerSelected($event)"
     ></app-sidenav>
   </mat-drawer>
   <mat-drawer-content>

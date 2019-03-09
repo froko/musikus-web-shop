@@ -1,4 +1,4 @@
-<div class="flexWrap">
+<div class="flexWrap" *ngIf="hasInstruments(); else noInstrumentsFound">
   <mat-card *ngFor="let instrument of instrumente" routerLink="/instrumente/{{ instrument.artikelNr }}">
     <mat-card-header>
       <mat-card-title>{{ instrument.name }}</mat-card-title>
@@ -10,3 +10,12 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+<ng-template #noInstrumentsFound>
+  <mat-card>
+    <img src="assets/404.png" height="300px" />
+    <mat-card-content>
+      <p>Für die eingegebenen Suchkriterien konnten leider keine Instrumente gefunden werden.</p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

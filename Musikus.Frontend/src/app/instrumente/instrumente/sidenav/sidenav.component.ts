@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { InstrumentFilter } from '../../instrumente.model';
 
 @Component({
   selector: 'app-sidenav',
@@ -6,9 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent {
-  @Input() typen: string[];
-
-  @Input() hersteller: string[];
+  @Input() filter: InstrumentFilter;
 
   @Output() typSelected = new EventEmitter<string>();
 
@@ -17,18 +16,10 @@ export class SidenavComponent {
   constructor() {}
 
   instrumentTypChanged(value: string) {
-    if (value) {
-      this.typSelected.emit(value);
-    } else {
-      this.typSelected.emit('');
-    }
+    this.typSelected.emit(value);
   }
 
   herstellerChanged(value: string) {
-    if (value) {
-      this.herstellerSelected.emit(value);
-    } else {
-      this.herstellerSelected.emit('');
-    }
+    this.herstellerSelected.emit(value);
   }
 }

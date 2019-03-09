@@ -16,7 +16,8 @@
         <span class="preis">{{ instrument.preis | currency: 'CHF ' }}</span>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button><mat-icon>add_shopping_cart</mat-icon>In den Warenkorb</button>
+        <button mat-button routerLink="/instrumente"><mat-icon>arrow_back</mat-icon>Zurück zur Übersicht</button>
+        <button mat-button routerLink="/instrumente"><mat-icon>add_shopping_cart</mat-icon>In den Warenkorb</button>
       </mat-card-actions>
     </mat-card>
   </div>

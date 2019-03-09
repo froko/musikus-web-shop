@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { InstrumentListItem } from '../instrumente.model';
-import { InstrumenteService } from '../instrumente.service';
+import { FilterByHersteller, FilterByInstrumentTyp, GetAllInstruments } from '../instrumente.actions';
+import { InstrumentFilter, InstrumentListItem } from '../instrumente.model';
+import { InstrumenteState } from '../instrumente.state';
 
 @Component({
   selector: 'app-instrumente',
@@ -11,19 +13,23 @@ import { InstrumenteService } from '../instrumente.service';
   styleUrls: ['./instrumente.component.css']
 })
 export class InstrumenteComponent implements OnInit {
+  @Select(InstrumenteState.instrumente)
   instrumente$: Observable<InstrumentListItem[]>;
-  typen$: Observable<string[]>;
-  hersteller$: Observable<string[]>;
 
-  constructor(private service: InstrumenteService) {}
+  @Select(InstrumenteState.filter)
+  filter$: Observable<InstrumentFilter>;
+
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    this.instrumente$ = this.service.getAll();
-    this.typen$ = this.service.getTypen();
-    this.hersteller$ = this.service.getHersteller();
+    this.store.dispatch(new GetAllInstruments());
   }
 
-  selectionChanged(value: string) {
-    console.log('Selection changed:', value);
+  typeSelected(value: string) {
+    this.store.dispatch(new FilterByInstrumentTyp(value));
+  }
+
+  herstellerSelected(value: string) {
+    this.store.dispatch(new FilterByHersteller(value));
   }
 }
