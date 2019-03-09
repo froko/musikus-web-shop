@@ -27,7 +27,7 @@ namespace Musikus.Api.Instrumente
                 new Posaune("A100282", "Tenorposaune YAMAHA YSL-620", "Yamaha", 3095.00m)
             };
         }
-        
+
         public IEnumerator<Instrument> GetEnumerator()
         {
             return this.instrumente.GetEnumerator();
@@ -50,7 +50,7 @@ namespace Musikus.Api.Instrumente
 
         public IEnumerable<InstrumentListItem> AsListItems()
         {
-            return this.instrumente.Select(i => new InstrumentListItem(i.ArtikelNr, i.Name, i.Typ, i.Preis));
+            return this.instrumente.Select(i => new InstrumentListItem(i.ArtikelNr, i.Name, i.Typ, i.Hersteller, i.Preis));
         }
     }
 }
