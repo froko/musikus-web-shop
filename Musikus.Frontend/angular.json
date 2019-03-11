@@ -25,18 +25,20 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "src/styles.css"],
             "scripts": [],
             "es5BrowserSupport": true
           },
           "configurations": {
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -69,6 +71,10 @@
             "browserTarget": "frontend:build"
           },
           "configurations": {
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "frontend:build:hmr"
+            },
             "production": {
               "browserTarget": "frontend:build:production"
             }
@@ -87,13 +93,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

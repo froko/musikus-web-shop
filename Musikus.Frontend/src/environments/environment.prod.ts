@@ -6,5 +6,6 @@ const providers: any[] = [
 export const ENV_PROVIDERS = providers;
 
 export const environment = {
-  production: true
+  production: true,
+  hmr: false
 };

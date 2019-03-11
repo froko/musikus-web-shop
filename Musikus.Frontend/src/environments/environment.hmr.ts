@@ -7,5 +7,5 @@ export const ENV_PROVIDERS = providers;
 
 export const environment = {
   production: false,
-  hmr: false
+  hmr: true
 };

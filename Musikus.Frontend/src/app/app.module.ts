@@ -8,8 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsHmrLifeCycle, NgxsHmrSnapshot as Snapshot } from '@ngxs/hmr-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
-import { NgxsModule } from '@ngxs/store';
+import { NgxsModule, StateContext } from '@ngxs/store';
 
 import { ENV_PROVIDERS, environment } from '../environments/environment';
 
@@ -45,4 +46,12 @@ const routes: Routes = [
   providers: [ENV_PROVIDERS],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule implements NgxsHmrLifeCycle<Snapshot> {
+  public hmrNgxsStoreOnInit(ctx: StateContext<Snapshot>, snapshot: Partial<Snapshot>) {
+    ctx.patchState(snapshot);
+  }
+
+  public hmrNgxsStoreBeforeOnDestroy(ctx: StateContext<Snapshot>): Partial<Snapshot> {
+    return ctx.getState();
+  }
+}
