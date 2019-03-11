@@ -1,5 +1,5 @@
 <div class="flexWrap" *ngIf="hasInstruments(); else noInstrumentsFound">
-  <mat-card *ngFor="let instrument of instrumente" routerLink="/instrumente/{{ instrument.artikelNr }}">
+  <mat-card *ngFor="let instrument of instrumente" (click)="selected(instrument.artikelNr)">
     <mat-card-header>
       <mat-card-title>{{ instrument.name }}</mat-card-title>
       <mat-card-subtitle>{{ instrument.typ }}</mat-card-subtitle>

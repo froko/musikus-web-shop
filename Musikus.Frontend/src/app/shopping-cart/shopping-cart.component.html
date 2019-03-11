@@ -1,0 +1,28 @@
+<div *ngIf="(produkte$ | async) as produkte" style="margin: 20px;">
+  <h2>Ihr Warenkorb</h2>
+  <mat-table #table [dataSource]="produkte">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Produkt</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+      <mat-footer-cell *matFooterCellDef>Total</mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="preis">
+      <mat-header-cell *matHeaderCellDef>Preis</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.preis | currency: 'CHF ' }}</mat-cell>
+      <mat-footer-cell *matFooterCellDef>{{ warenwert$ | async | currency: 'CHF ' }}</mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="artikelNr">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"
+        ><button mat-button (click)="removeProduct(element.artikelNr)">
+          <mat-icon>remove_shopping_cart</mat-icon>
+        </button></mat-cell
+      >
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+  </mat-table>
+</div>

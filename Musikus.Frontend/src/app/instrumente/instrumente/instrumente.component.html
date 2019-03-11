@@ -7,6 +7,6 @@
     ></app-sidenav>
   </mat-drawer>
   <mat-drawer-content>
-    <app-content [instrumente]="instrumente$ | async"></app-content>
+    <app-content [instrumente]="instrumente$ | async" (instrumentSelected)="instrumentSelected($event)"></app-content>
   </mat-drawer-content>
 </mat-drawer-container>

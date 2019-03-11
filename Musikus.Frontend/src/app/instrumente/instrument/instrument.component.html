@@ -1,8 +1,8 @@
 <div class="content flexWrap" *ngIf="(instrument$ | async) as instrument">
   <div>
-    <mat-card class="description" *ngIf="(beschreibung$ | async) as beschreibung">
+    <mat-card class="description">
       <img src="{{ instrument.image }}" alt="{{ instrument.name }}" />
-      <mat-card-content [innerHTML]="beschreibung"></mat-card-content>
+      <mat-card-content [innerHTML]="instrument.beschreibung"></mat-card-content>
     </mat-card>
   </div>
   <div>
@@ -16,8 +16,10 @@
         <span class="preis">{{ instrument.preis | currency: 'CHF ' }}</span>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button routerLink="/instrumente"><mat-icon>arrow_back</mat-icon>Zurück zur Übersicht</button>
-        <button mat-button routerLink="/instrumente"><mat-icon>add_shopping_cart</mat-icon>In den Warenkorb</button>
+        <button mat-button (click)="goBackToOverview()"><mat-icon>arrow_back</mat-icon>Zurück zur Übersicht</button>
+        <button mat-button (click)="addToShoppingCart(instrument.artikelNr, instrument.name, instrument.preis)">
+          <mat-icon>add_shopping_cart</mat-icon>In den Warenkorb
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

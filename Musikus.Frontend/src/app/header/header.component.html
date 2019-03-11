@@ -1,7 +1,13 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Musikus Instrumente</span>
+    <span (click)="navigateToOverview()">Musikus Instrumente</span>
     <span class="example-fill-remaining-space"></span>
-    <span><mat-icon>shopping_cart</mat-icon>CHF 0.00</span>
+    <span *ngIf="(warenwert$ | async) as warenwert; else emptyShoppingCart" (click)="navigateToShoppingCart()"
+      ><mat-icon>shopping_cart</mat-icon>{{ warenwert | currency: 'CHF ' }}</span
+    >
   </mat-toolbar-row>
 </mat-toolbar>
+
+<ng-template #emptyShoppingCart>
+  <span><mat-icon>shopping_cart</mat-icon>{{ 0.0 | currency: 'CHF ' }}</span>
+</ng-template>

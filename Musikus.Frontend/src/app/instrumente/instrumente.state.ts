@@ -2,14 +2,14 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { forkJoin } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { FilterByHersteller, FilterByInstrumentTyp, GetAllInstruments } from './instrumente.actions';
-import { Instrument, InstrumentListItem } from './instrumente.model';
+import { FilterByHersteller, FilterByInstrumentTyp, GetAllInstruments, GetInstrument } from './instrumente.actions';
+import { InstrumentListItem, InstrumentWithDescription } from './instrumente.model';
 import { InstrumenteService } from './instrumente.service';
 
 export interface InstrumenteStateModel {
   alleInstrumente: InstrumentListItem[];
   instrumente: InstrumentListItem[];
-  instrument: Instrument;
+  instrument: InstrumentWithDescription;
   typen: string[];
   hersteller: string[];
   selectedTyp: string;
@@ -34,6 +34,11 @@ export class InstrumenteState {
   @Selector()
   public static instrumente(state: InstrumenteStateModel) {
     return state.instrumente;
+  }
+
+  @Selector()
+  public static instrument(state: InstrumenteStateModel) {
+    return state.instrument;
   }
 
   @Selector()
@@ -64,6 +69,20 @@ export class InstrumenteState {
           instrumente: values[0],
           typen: values[1],
           hersteller: values[2]
+        });
+      })
+    );
+  }
+
+  @Action(GetInstrument)
+  getInstrument(ctx: StateContext<InstrumenteStateModel>, action: GetInstrument) {
+    const instrument$ = this.service.get(action.artikelNr);
+    const beschreibung$ = this.service.getDescription(action.artikelNr);
+
+    return forkJoin(instrument$, beschreibung$).pipe(
+      tap(values => {
+        ctx.patchState({
+          instrument: new InstrumentWithDescription(values[0], values[1])
         });
       })
     );

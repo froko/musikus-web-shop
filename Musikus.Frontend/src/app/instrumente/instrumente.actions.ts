@@ -4,6 +4,12 @@ export class GetAllInstruments {
   constructor() {}
 }
 
+export class GetInstrument {
+  static readonly type = '[Instrumente] Get Instrument';
+
+  constructor(public artikelNr: string) {}
+}
+
 export class FilterByInstrumentTyp {
   static readonly type = '[Instrumente] Filter By Instrument Typ';
 

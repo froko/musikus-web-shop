@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -31,5 +32,9 @@ export class InstrumenteComponent implements OnInit {
 
   herstellerSelected(value: string) {
     this.store.dispatch(new FilterByHersteller(value));
+  }
+
+  instrumentSelected(value: string) {
+    this.store.dispatch(new Navigate(['/instrumente', value]));
   }
 }
